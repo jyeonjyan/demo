@@ -5,6 +5,7 @@
 - Dependencies
 Spring Web
 Spring Data JPA 
+querydsl-jpa
 Lombok
 Validation
 H2 Database

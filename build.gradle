@@ -1,6 +1,8 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	/** querydsl **/
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
 }
 
@@ -21,6 +23,8 @@ repositories {
 dependencies {
 	/** jpa **/
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	/** querydsl **/
+	implementation 'com.querydsl:querydsl-jpa'
 	/** validation **/
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	/** web **/
@@ -30,6 +34,7 @@ dependencies {
 	/** h2DB **/
 	runtimeOnly 'com.h2database:h2'
 
+
 	/** other **/
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -37,4 +42,21 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+/** querydsl configuration **/
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+sourceSets {
+	main.java.srcDir querydslDir
+}
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
 }
