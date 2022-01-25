@@ -1,6 +1,5 @@
 server:
-  # dev profile port
-  port: 8081
+  port: 8080
 
   # UTF-8 사용
   servlet:
