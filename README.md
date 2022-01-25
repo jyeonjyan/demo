@@ -12,4 +12,4 @@ H2 Database
 ```
 
 ## application configuration
-* application runs on port `8081`
+* application runs on port `8080`
