@@ -24,7 +24,11 @@ dependencies {
 	/** jpa **/
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	/** querydsl **/
-	implementation 'com.querydsl:querydsl-jpa'
+	implementation("com.querydsl:querydsl-jpa")
+	implementation("com.querydsl:querydsl-apt")
+	/** querydsl in test **/
+	testCompileOnly("org.projectlombok:lombok")
+	testAnnotationProcessor("org.projectlombok:lombok")
 	/** validation **/
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	/** web **/
@@ -48,6 +52,7 @@ tasks.named('test') {
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
+	library = "com.querydsl:querydsl-apt"
 	jpa = true
 	querydslSourcesDir = querydslDir
 }
@@ -55,6 +60,9 @@ sourceSets {
 	main.java.srcDir querydslDir
 }
 configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 	querydsl.extendsFrom compileClasspath
 }
 compileQuerydsl {
