@@ -39,4 +39,5 @@ H2 Database
     4. Open IntelliJ IDEA
     5. Refresh Gradle Project
     6. Change app package name like `com.app.yourprojectname`
-    7. Change app entry point class name like `yourApplication.java` 
+    7. Change app entry point class name like `YourApplication.java`
+    8. run `YourApplication.java`
