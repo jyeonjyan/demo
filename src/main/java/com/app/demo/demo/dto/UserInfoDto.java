@@ -1,5 +1,6 @@
 package com.app.demo.demo.dto;
 
+import com.app.demo.demo.entity.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,7 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class UserInfoDto {
 
-    static class UserInfoRequestDto {
+    @Getter
+    public static class UserInfoRequestDto {
         @Email
         @NotBlank
         private String email;
@@ -25,6 +27,14 @@ public class UserInfoDto {
             this.email = email;
             this.password = password;
             this.username = username;
+        }
+
+        public UserInfo toEntity(UserInfoRequestDto userInfoRequestDto){
+            return UserInfo.builder()
+                    .email(userInfoRequestDto.getEmail())
+                    .username(userInfoRequestDto.getUsername())
+                    .password(userInfoRequestDto.getPassword())
+                    .build();
         }
     }
 
