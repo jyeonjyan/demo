@@ -1,14 +1,30 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	/** querydsl **/
+	/** Querydsl plugin **/
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	/** AsciiDoc convert plugin **/
+	id "org.asciidoctor.convert" version "1.5.9.2" // (1)
 	id 'java'
 }
 
 group = 'com.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+/** gradle build process [test -> asciidoctor] **/
+asciidoctor {
+	dependsOn test
+}
+
+/** file location ./build/asciidoc/html5/ **/
+bootJar {
+	dependsOn asciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		/** in jar **/
+		into 'static/docs'
+	}
+}
 
 configurations {
 	compileOnly {
@@ -42,6 +58,7 @@ dependencies {
 	/** other **/
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
 }
 
 tasks.named('test') {
