@@ -12,12 +12,15 @@
 ## project configuration
 ```
 - Dependencies
+
 Spring Web
-Spring Data JPA 
+Spring Data JPA
 querydsl-jpa
 Lombok
 Validation
 H2 Database
+Mockito
+Spring Rest Docs (Junit 5 + Mockito)
 ```
 
 ## application configuration
@@ -30,6 +33,7 @@ H2 Database
 ## get start
 * git clone
     * `git clone https://github.com/jyeonjyan/springboot-starter [your project name]`
+
 * edit project name in IntelliJ
     1. Go to File >> Project Structure >> Project > Project Name Update project name with its new name
     2. Exit IntelliJ IDEA
@@ -41,5 +45,9 @@ H2 Database
     6. Change app package name like `com.app.yourprojectname`
     7. Change app entry point class name like `YourApplication.java`
     8. run `YourApplication.java`
-* how to use h2DB Embedded type
-    * 
+
+* how to use H2DB embedded type
+    * use [this solution](https://bit.ly/3H3yfQu)
+  
+* how to check Spring Rest Docs
+    * `.adoc` files located in `/project/build/generated-snippets/**`
