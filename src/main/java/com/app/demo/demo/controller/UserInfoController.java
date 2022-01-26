@@ -2,7 +2,6 @@ package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.entity.UserInfo;
-import com.app.demo.demo.repository.UserInfoRepository;
 import com.app.demo.demo.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

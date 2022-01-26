@@ -29,7 +29,7 @@ public class UserInfoDto {
             this.username = username;
         }
 
-        public UserInfo toEntity(UserInfoRequestDto userInfoRequestDto){
+        public static UserInfo toEntity(UserInfoRequestDto userInfoRequestDto){
             return UserInfo.builder()
                     .email(userInfoRequestDto.getEmail())
                     .username(userInfoRequestDto.getUsername())
