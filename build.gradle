@@ -4,7 +4,7 @@ plugins {
 	/** Querydsl plugin **/
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	/** AsciiDoc convert plugin **/
-	id "org.asciidoctor.convert" version "1.5.9.2" // (1)
+	id "org.asciidoctor.convert" version "1.5.9.2"
 	id 'java'
 }
 
@@ -17,7 +17,7 @@ asciidoctor {
 	dependsOn test
 }
 
-/** file location ./build/asciidoc/html5/ **/
+/** rest docs file location ./build/asciidoc/html5/ **/
 bootJar {
 	dependsOn asciidoctor
 	from ("${asciidoctor.outputDir}/html5") {
@@ -53,10 +53,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	/** h2DB **/
 	runtimeOnly 'com.h2database:h2'
-
-
-	/** other **/
+	/** lombok **/
 	annotationProcessor 'org.projectlombok:lombok'
+
+	/** for test **/
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
 	testImplementation "org.mockito:mockito-core:3.+"
