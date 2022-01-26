@@ -20,7 +20,7 @@ Lombok
 Validation
 H2 Database
 Mockito
-Spring Rest Docs (Junit 5 + Mockito)
+Spring REST Docs (Junit 5 + Mockito)
 ```
 
 ## application configuration
@@ -44,10 +44,12 @@ Spring Rest Docs (Junit 5 + Mockito)
     5. Refresh Gradle Project
     6. Change app package name like `com.app.yourprojectname`
     7. Change app entry point class name like `YourApplication.java`
-    8. run `YourApplication.java`
+    8. Run `YourApplication.java`
 
 * how to use H2DB embedded type
-    * use [this solution](https://bit.ly/3H3yfQu)
+    * Use [this solution](https://bit.ly/3H3yfQu)
   
 * how to check Spring Rest Docs
+    * You can check the results in advance with the test. `/src/test/docs/UserInfoDocumentationTests`
     * `.adoc` files located in `/project/build/generated-snippets/**`
+    * More information -> [spring-restdocs](https://spring.io/projects/spring-restdocs)
