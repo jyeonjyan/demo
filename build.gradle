@@ -5,26 +5,14 @@ plugins {
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	/** AsciiDoc convert plugin **/
 	id "org.asciidoctor.convert" version "1.5.9.2"
+	/** restdocs-api plugin **/
+	id 'com.epages.restdocs-api-spec' version '0.15.1'
 	id 'java'
 }
 
 group = 'com.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
-
-/** gradle build process [test -> asciidoctor] **/
-asciidoctor {
-	dependsOn test
-}
-
-/** rest docs file location ./build/asciidoc/html5/ **/
-bootJar {
-	dependsOn asciidoctor
-	from ("${asciidoctor.outputDir}/html5") {
-		/** in jar **/
-		into 'static/docs'
-	}
-}
 
 configurations {
 	compileOnly {
@@ -55,11 +43,18 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	/** lombok **/
 	annotationProcessor 'org.projectlombok:lombok'
+	/** swagger **/
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+
 
 	/** for test **/
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
 	testImplementation "org.mockito:mockito-core:3.+"
+
+	/** *.adoc 파일의 {snippets}를 자동으로 설정 - 아래에서 자세히 설명 **/
+	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.3.RELEASE'
 }
 
 tasks.named('test') {
@@ -85,4 +80,30 @@ configurations {
 }
 compileQuerydsl {
 	options.annotationProcessorPath = configurations.querydsl
+}
+
+/**
+ * Spring REST Docs config
+ */
+
+ext {
+	snippetsDir = file('build/generated-snippets') // (2)
+}
+
+/** gradle build process [test -> asciidoctor] **/
+asciidoctor {
+	inputs.dir snippetsDir
+	dependsOn test
+}
+
+/** rest docs file location ./build/asciidoc/html5/ **/
+task copyDocument(type: Copy) {
+	dependsOn asciidoctor
+
+	from file("build/asciidoc/html5/")
+	into file("src/main/resources/static/docs")
+}
+
+build {
+	dependsOn copyDocument
 }
