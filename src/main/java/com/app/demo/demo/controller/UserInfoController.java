@@ -5,6 +5,7 @@ import com.app.demo.demo.entity.UserInfo;
 import com.app.demo.demo.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
 
     @PostMapping("/userinfo")
-    public UserInfo createUserInfo(UserInfoDto.UserInfoRequestDto requestDto){
+    public UserInfo createUserInfo(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
         return userInfoService.createUserInfo(requestDto);
     }
 
