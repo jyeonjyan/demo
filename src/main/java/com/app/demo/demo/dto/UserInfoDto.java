@@ -3,6 +3,7 @@ package com.app.demo.demo.dto;
 import com.app.demo.demo.entity.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 public class UserInfoDto {
 
     @Getter
+    @NoArgsConstructor
     public static class UserInfoRequestDto {
         @Email
         @NotBlank
