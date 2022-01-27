@@ -43,7 +43,7 @@ public class UserInfoDocumentationTests {
     public void create() throws Exception {
         // Given
         UserInfoDto.UserInfoRequestDto requestDto = UserInfoDto.UserInfoRequestDto.builder()
-                .email("s20062@gsm.hs.kr")
+                .email("jihwan.official@gmail.com")
                 .password("1234")
                 .username("jyeonjyan")
                 .build();

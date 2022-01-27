@@ -49,7 +49,7 @@ Spring REST Docs (Junit 5 + Mockito)
 * how to use H2DB embedded type
     * Use [this solution](https://bit.ly/3H3yfQu)
   
-* how to check Spring Rest Docs
+* how to check Spring REST Docs
     * You can check the results in advance with the test. `/src/test/docs/UserInfoDocumentationTests`
     * `.adoc` files located in `/project/build/generated-snippets/**`
     * More information -> [spring-restdocs](https://spring.io/projects/spring-restdocs)
