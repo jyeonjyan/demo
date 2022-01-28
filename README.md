@@ -24,6 +24,23 @@ Spring REST Docs (Junit 5 + Mockito)
 Spring REST Docs API specification Integration
 ```
 
+## 시작하기
+* git clone 
+    * `git clone https://github.com/jyeonjyan/springboot-starter [your project name]`
+
+* IntelliJ 에서 프로젝트 이름 바꾸기
+    1. Go to File >> Project Structure >> Project > Project Name Update project name with its new name
+    2. Exit IntelliJ IDEA
+    3. Edit contents of the following files
+        * {project_root}/settings.gradle
+        * {project_root}/.idea/.name (if exists)
+    4. Open IntelliJ IDEA
+    5. Refresh Gradle Project
+    6. Change app package name like `com.app.yourprojectname`
+    7. Change app entry point class name like `YourApplication.java`
+    8. Run `YourApplication.java`
+    
+
 ## 애플리케이션 설정
 * 애플리케이션은 기본적으로 `8080` 포트에서 실행돼요.
   
@@ -49,6 +66,6 @@ Spring REST Docs API specification Integration
     * 테스트가 통과하면 `build/generated-snippets/**`에 스니펫(.adoc)들이 생성돼요.
     * `src/docs/asciidoc/**.adoc` 으로 API spec 페이지를 구성해주세요.
         * `.adoc` 파일 작성 방법에 대한 자세한 내용은 [여기를](https://asciidoctor.org/docs/asciidoc-writers-guide/#a-new-perspective-on-tables) 참고하세요.
-    * `./gradlew build` 시 `build/asciidoc/html5/**`에 html로 변환된 API spec 페이지가 생성될 거예요. 
+    * `./gradlew build` 시 `build/asciidoc/html5/**`에 html로 변환된 API spec 페이지가 생성될 거예요.
 
-## 시작하기
+* Spring REST Docs API spec 사용하는 법
