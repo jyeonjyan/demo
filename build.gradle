@@ -110,12 +110,12 @@ task copyDocument(type: Copy) {
 }
 
 openapi3 {
-	server = 'https://localhost:8080'
-	title = 'My API'
-	description = 'My API description'
-	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yml'
-	version = '0.1.0'
-	format = 'yml'
+	server = 'https://localhost:8080' // your server host:port
+	title = 'demo API' // {application name} API
+	description = 'demo API description' // define your API description
+	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yml' // tag properties file location
+	version = '0.1.0' // your application version
+	format = 'yml' // yml is file extension for the yaml file format
 }
 
 /**
