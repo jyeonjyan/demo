@@ -4,6 +4,7 @@ import com.app.demo.demo.controller.UserInfoController;
 import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.service.UserInfoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -37,6 +39,9 @@ public class UserInfoDocumentationTests {
 
     @MockBean
     private UserInfoService userInfoService;
+
+    @Autowired
+    private WebTestClient webTestClient;
 
 
     @Test
@@ -71,5 +76,15 @@ public class UserInfoDocumentationTests {
                         )
                 ));
 
+    }
+
+    @Test
+    @DisplayName(value = "create userinfo with rest docs api")
+    void create_userinfo(){
+        webTestClient.post().uri("/")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody();
     }
 }
