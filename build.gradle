@@ -109,6 +109,7 @@ task copyDocument(type: Copy) {
 	into file("src/main/resources/static/docs")
 }
 
+/** rest docs api config **/
 openapi3 {
 	server = 'https://localhost:8080' // your server host:port
 	title = 'demo API' // {application name} API
@@ -116,11 +117,4 @@ openapi3 {
 	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yml' // tag properties file location
 	version = '0.1.0' // your application version
 	format = 'yml' // yml is file extension for the yaml file format
-}
-
-/**
- * application config
- */
-build {
-	dependsOn copyDocument
 }
