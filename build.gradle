@@ -52,6 +52,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.mockito:mockito-core:3.+'
+	testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.15.1'
+
 
 	/** *.adoc 파일의 {snippets}를 자동으로 설정 - 아래에서 자세히 설명 **/
 	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.3.RELEASE'
@@ -107,6 +109,19 @@ task copyDocument(type: Copy) {
 	into file("src/main/resources/static/docs")
 }
 
+openapi3 {
+	server = 'https://localhost:8080'
+	title = 'My API'
+	description = 'My API description'
+	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yaml'
+	version = '0.1.0'
+	format = 'yaml'
+}
+
+
+/**
+ * application config
+ */
 build {
 	dependsOn copyDocument
 }
