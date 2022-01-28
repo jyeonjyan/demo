@@ -110,11 +110,22 @@ task copyDocument(type: Copy) {
 }
 
 /** rest docs api config **/
-openapi3 {
+openapi3{
+	println("openapi3 task execute")
+
 	server = 'https://localhost:8080' // your server host:port
 	title = 'demo API' // {application name} API
 	description = 'demo API description' // define your API description
 	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yml' // tag properties file location
 	version = '0.1.0' // your application version
 	format = 'yml' // yml is file extension for the yaml file format
+}
+
+/**
+ * for spring application
+ */
+
+build {
+	// build with openapi3 task
+	finalizedBy 'openapi3'
 }
