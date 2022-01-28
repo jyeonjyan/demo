@@ -5,6 +5,7 @@ import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.service.UserInfoService;
 import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,7 +25,6 @@ import static com.app.demo.util.ApiDocumentUtils.getDocumentResponse;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -43,6 +44,7 @@ public class UserInfoDocumentationTests {
 
 
     @Test
+    @DisplayName("create user info with spring rest docs api")
     public void create() throws Exception {
         // Given
         UserInfoDto.UserInfoRequestDto requestDto = UserInfoDto.UserInfoRequestDto.builder()
@@ -56,7 +58,7 @@ public class UserInfoDocumentationTests {
 
         // When
         ResultActions result = this.mockMvc.perform(
-                post("/v1/api/demo/userinfo")
+                RestDocumentationRequestBuilders.post("/v1/api/demo/userinfo")
                         .content(objectMapper.writeValueAsString(requestDto))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
