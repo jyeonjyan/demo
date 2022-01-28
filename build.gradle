@@ -55,7 +55,7 @@ dependencies {
 	testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.15.1'
 
 
-	/** *.adoc 파일의 {snippets}를 자동으로 설정 - 아래에서 자세히 설명 **/
+	/** *.adoc file {snippets} auto setting **/
 	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.3.RELEASE'
 }
 
@@ -126,6 +126,8 @@ openapi3{
  */
 
 build {
+	// copyDocument task execute
+	dependsOn copyDocument
 	// build with openapi3 task
 	finalizedBy 'openapi3'
 }
