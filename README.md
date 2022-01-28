@@ -26,6 +26,11 @@ Spring REST Docs API specification Integration
 
 ## 애플리케이션 설정
 * 애플리케이션은 기본적으로 `8080` 포트에서 실행돼요.
+  
+* H2 Database 사용하는 법
+    * Embedded and server modes [설치형 DB](https://github.com/jyeonjyan/TIL/blob/master/DevFeed/h2db.md)
+    * disk-based or in-memory databases [인메모리 DB](http://localhost:8080/h2-console)
+
 * Querydsl 사용하는 법
     * IntelliJ 환경설정에서 annotation processing 을 활성화 해요.
     * Q-class를 생성하려면 Gradle 작업창에서 `Gradle/Tasks/other/compileQuerydsl.sh` task를 누르거나 `./gradlew clean build` 명령어를 이용해요.
