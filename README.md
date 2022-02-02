@@ -24,6 +24,7 @@ Lombok
 Validation
 H2 Database
 Mockito
+Swagger2, Swagger-ui
 Spring REST Docs (Junit 5 + Mockito)
 Spring REST Docs API specification Integration
 ```
