@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
+    /**
+     * setting "/swagger-ui/index.html"
+     */
     @Bean
     public OpenAPI demoOpenAPI(){
         return new OpenAPI()
@@ -27,11 +30,14 @@ public class SwaggerConfig {
                 );
     }
 
+    /**
+     * setting "select a definition" group
+     */
     @Bean
-    public GroupedOpenApi publicApi(){
+    public GroupedOpenApi demoUserApi(){
         return GroupedOpenApi.builder()
-                .group("springboot-demo")
-                .pathsToMatch("/v1/api/demo/**")
+                .group("v1 demo-application")
+                .pathsToMatch("/**/v1/api/**")
                 .build();
     }
 
