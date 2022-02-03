@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "user", description = "user related resources") // name == tag -> See tag-descriptions
+@Tag(name = "user", description = "user related resources")
 @RestController
-@RequestMapping("/user/v1/api") // /tag/version/api/**
+@RequestMapping("/demo/v0.0.1/user")
 @RequiredArgsConstructor
 public class UserInfoController {
 
