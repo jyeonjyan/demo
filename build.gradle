@@ -117,7 +117,7 @@ openapi3{
 	title = 'demo API' // {application name} API
 	description = 'demo API description' // define your API description
 	tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yml' // tag properties file location
-	version = '0.1.0' // your application version
+	version = '0.0.1' // your application version
 	format = 'yml' // yml is file extension for the yaml file format
 }
 
