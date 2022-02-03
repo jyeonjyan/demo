@@ -9,6 +9,11 @@ server:
       force: true
 
 spring:
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   #H2 DataBase
   h2:
     console:
