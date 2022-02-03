@@ -58,7 +58,7 @@ public class UserInfoDocumentationTests {
 
         // When
         ResultActions result = this.mockMvc.perform(
-                RestDocumentationRequestBuilders.post("/user/v1/api/userinfo")
+                RestDocumentationRequestBuilders.post("/demo/v0.0.1/user/userinfo")
                         .content(objectMapper.writeValueAsString(requestDto))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
