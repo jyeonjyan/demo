@@ -1,15 +1,12 @@
 package com.app.demo.demo.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Entity
+@Entity @Getter
 @Table(name = "user_info")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder @AllArgsConstructor(access = AccessLevel.PRIVATE)
