@@ -1,8 +1,1 @@
-# Match the yml key to the first layer value of the controller.
-# yml key를 controller 첫 번째 계층 값과 일치시켜 주세요.
-
-tags:
-  - name: user
-    description: It's related to the user.
-    externalDocs:
-      uri: https://docs.api.com/demo/v0.0.1/user/userinfo
+user: user related resources
