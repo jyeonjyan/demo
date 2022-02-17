@@ -44,7 +44,9 @@ public class UserInfoDocumentationTests {
     @Test
     @DisplayName("create user info with spring rest docs api")
     public void create() throws Exception {
-        // Given
+        /*
+        Given:: requestDto
+         */
         UserInfoDto.UserInfoRequestDto requestDto = UserInfoDto.UserInfoRequestDto.builder()
                 .email("jihwan.official@gmail.com")
                 .password("1234")

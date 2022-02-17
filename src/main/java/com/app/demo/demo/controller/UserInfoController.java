@@ -5,11 +5,14 @@ import com.app.demo.demo.entity.UserInfo;
 import com.app.demo.demo.service.UserInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Tag(name = "user", description = "user related resources")
 @RestController
@@ -22,7 +25,20 @@ public class UserInfoController {
     @PostMapping("/userinfo")
     public ResponseEntity<UserInfo> createUserInfo(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
         final UserInfo userInfo = userInfoService.createUserInfo(requestDto);
-        return ResponseEntity.ok(userInfo);
+
+        /*
+        hateoas:: "_links": "self": "href"
+         */
+        userInfo.add(
+                Link.of(String.valueOf(linkTo(UserInfoController.class)
+                        .slash(userInfo.getUserId())
+                        .toUri())).withSelfRel()
+        );
+
+        return ResponseEntity
+                .created(linkTo(UserInfoController.class)
+                .slash(userInfo.getUserId()).toUri())
+                .body(userInfo);
     }
 
 }
