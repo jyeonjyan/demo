@@ -2,10 +2,13 @@ package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.entity.UserInfo;
+import com.app.demo.demo.response.ResponseSingleResult;
+import com.app.demo.demo.response.ResponseTemplate;
 import com.app.demo.demo.service.UserInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,4 +44,11 @@ public class UserInfoController {
                 .body(userInfo);
     }
 
+    @PostMapping("/userinfo/template")
+    public ResponseEntity<RepresentationModel> createUserInfoWithTemplate(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
+        final UserInfo userInfo = userInfoService.createUserInfo(requestDto);
+
+        ResponseTemplate responseTemplate = new ResponseTemplate();
+        return responseTemplate.createResponse(new ResponseSingleResult<>(new UserInfoController(userInfoService), userInfo), userInfo.getUserId());
+    }
 }
