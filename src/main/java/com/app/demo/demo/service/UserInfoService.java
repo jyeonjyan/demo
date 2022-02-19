@@ -12,8 +12,9 @@ public class UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
 
-    public UserInfo createUserInfo(UserInfoDto.UserInfoRequestDto userInfoRequestDto){
-        return userInfoRepository.save(userInfoRequestDto.toEntity(userInfoRequestDto));
+    public UserInfoDto.UserInfoResponseDto createUserInfo(UserInfoDto.UserInfoRequestDto userInfoRequestDto){
+        UserInfo savedUserInfo = userInfoRepository.save(UserInfoDto.UserInfoRequestDto.toEntity(userInfoRequestDto));
+        return UserInfoDto.UserInfoResponseDto.of(savedUserInfo);
     }
 
 }
