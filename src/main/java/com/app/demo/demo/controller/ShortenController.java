@@ -1,7 +1,6 @@
 package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
-import com.app.demo.demo.entity.UserInfo;
 import com.app.demo.demo.response.ResponseService;
 import com.app.demo.demo.response.ResponseSingleResult;
 import com.app.demo.demo.service.UserInfoService;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "user", description = "user related resources")
+@Tag(name = "shorten-controller", description = "draft:: shorten-controller related responseService")
 @RequestMapping("/demo/v0.0.1/shorten")
 @RequiredArgsConstructor
 @RestController
@@ -24,11 +23,11 @@ public class ShortenController {
 
     @PostMapping("/userinfo")
     public ResponseEntity<Object> createUserInfo (@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
-        final UserInfo userInfo = userInfoService.createUserInfo(requestDto);
+        final UserInfoDto.UserInfoResponseDto userInfo = userInfoService.createUserInfo(requestDto);
 
         return responseService.createResponse(
                 new ResponseSingleResult<>(new ShortenController(userInfoService, responseService), userInfo),
-                userInfo.getUserId()
+                userInfo.getId()
         );
     }
 

@@ -1,7 +1,6 @@
 package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
-import com.app.demo.demo.entity.UserInfo;
 import com.app.demo.demo.service.UserInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -23,21 +22,21 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
 
     @PostMapping("/userinfo")
-    public ResponseEntity<UserInfo> createUserInfo(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
-        final UserInfo userInfo = userInfoService.createUserInfo(requestDto);
+    public ResponseEntity<UserInfoDto.UserInfoResponseDto> createUserInfo(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
+        final UserInfoDto.UserInfoResponseDto userInfo = userInfoService.createUserInfo(requestDto);
 
         /*
         hateoas:: "_links": "self": "href"
          */
         userInfo.add(
                 Link.of(String.valueOf(linkTo(UserInfoController.class)
-                        .slash(userInfo.getUserId())
-                        .toUri())).withSelfRel()
+                        .slash(userInfo.getId()).toUri()))
+                        .withSelfRel()
         );
 
         return ResponseEntity
                 .created(linkTo(UserInfoController.class)
-                .slash(userInfo.getUserId()).toUri())
+                .slash(userInfo.getId()).toUri())
                 .body(userInfo);
     }
 }
