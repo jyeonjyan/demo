@@ -43,7 +43,7 @@ public class UserInfoDto {
 
     @Getter
     @NoArgsConstructor
-    public static class UserInfoResponseDto extends RepresentationModel {
+    public static class UserInfoResponseDto extends RepresentationModel<UserInfoResponseDto> {
 
         private Long id;
         private String email;
