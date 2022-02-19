@@ -1,6 +1,5 @@
 package com.app.demo.demo.response;
 
-import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -12,7 +11,7 @@ public class ResponseTemplate {
         response를 생성한다.
         TODO:: return type 변경
     */
-    public ResponseEntity<RepresentationModel> createResponse(ResponseStrategy responseStrategy, Object data){
+    public ResponseEntity<Object> createResponse(ResponseStrategy responseStrategy, Object data){
         return responseStrategy.createResponse(data);
     }
 

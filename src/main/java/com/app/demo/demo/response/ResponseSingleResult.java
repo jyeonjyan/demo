@@ -17,7 +17,7 @@ public class ResponseSingleResult<C, M extends RepresentationModel> implements R
     }
 
     @Override
-    public ResponseEntity<RepresentationModel> createResponse(Object data) {
+    public ResponseEntity<Object> createResponse(Object data) {
 
         final var bodyContent = targetModel
                 .add(Link.of(String.valueOf(linkTo(targetController.getClass())

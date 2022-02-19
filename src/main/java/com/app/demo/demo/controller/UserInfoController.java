@@ -45,7 +45,7 @@ public class UserInfoController {
     }
 
     @PostMapping("/userinfo/template")
-    public ResponseEntity<RepresentationModel> createUserInfoWithTemplate(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
+    public ResponseEntity<Object> createUserInfoWithTemplate(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
         final UserInfo userInfo = userInfoService.createUserInfo(requestDto);
 
         ResponseTemplate responseTemplate = new ResponseTemplate();
