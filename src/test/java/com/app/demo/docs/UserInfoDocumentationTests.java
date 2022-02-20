@@ -1,8 +1,6 @@
 package com.app.demo.docs;
 
-import com.app.demo.demo.controller.UserInfoController;
 import com.app.demo.demo.dto.UserInfoDto;
-import com.app.demo.demo.service.UserInfoService;
 import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -10,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
@@ -20,13 +17,12 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static com.app.demo.util.ApiDocumentUtils.getDocumentRequest;
 import static com.app.demo.util.ApiDocumentUtils.getDocumentResponse;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@WebMvcTest(UserInfoController.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs(uriScheme = "https", uriHost = "docs.api.com")
 public class UserInfoDocumentationTests {
@@ -37,12 +33,9 @@ public class UserInfoDocumentationTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @MockBean
-    private UserInfoService userInfoService;
-
 
     @Test
-    @DisplayName("create user info with spring rest docs api")
+    @DisplayName("uri: /demo/v0.0.1/user/userinfo 테스트하면 정상적으로 반환한다.")
     public void create() throws Exception {
         /*
         Given:: requestDto
@@ -53,9 +46,6 @@ public class UserInfoDocumentationTests {
                 .username("jyeonjyan")
                 .build();
 
-        given(userInfoService.createUserInfo(requestDto))
-                .willReturn(UserInfoDto.UserInfoRequestDto.toEntity(requestDto));
-
         // When
         ResultActions result = this.mockMvc.perform(
                 RestDocumentationRequestBuilders.post("/demo/v0.0.1/user/userinfo")
@@ -65,7 +55,7 @@ public class UserInfoDocumentationTests {
         );
 
         // Then
-        result.andExpect(status().isOk())
+        result.andExpect(status().isCreated())
                 .andDo(MockMvcRestDocumentationWrapper.document("userinfo-create",
                         getDocumentRequest(),
                         getDocumentResponse(),

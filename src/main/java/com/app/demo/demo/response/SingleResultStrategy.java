@@ -1,0 +1,30 @@
+package com.app.demo.demo.response;
+
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.ResponseEntity;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
+public class SingleResultStrategy<C, M extends RepresentationModel <? extends M>> implements ResponseStrategy{
+
+    private final C targetController;
+    private final M targetModel;
+
+    public SingleResultStrategy(C targetController, M targetModel) {
+        this.targetController = targetController;
+        this.targetModel = targetModel;
+    }
+
+    @Override
+    public ResponseEntity<Object> createResponse(Object data) {
+
+        final Object bodyContent = targetModel
+                .add(Link.of(String.valueOf(linkTo(targetController.getClass())
+                        .slash(data).toUri()))
+                        .withSelfRel());
+
+        return ResponseEntity.ok().body(bodyContent);
+    }
+
+}
