@@ -6,12 +6,12 @@ import org.springframework.http.ResponseEntity;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
-public class ResponseSingleResult<C, M extends RepresentationModel <? extends M>> implements ResponseStrategy{
+public class SingleResultStrategy<C, M extends RepresentationModel <? extends M>> implements ResponseStrategy{
 
     private final C targetController;
     private final M targetModel;
 
-    public ResponseSingleResult(C targetController, M targetModel) {
+    public SingleResultStrategy(C targetController, M targetModel) {
         this.targetController = targetController;
         this.targetModel = targetModel;
     }

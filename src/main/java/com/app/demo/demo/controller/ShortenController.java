@@ -2,7 +2,7 @@ package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.response.ResponseService;
-import com.app.demo.demo.response.ResponseSingleResult;
+import com.app.demo.demo.response.SingleResultStrategy;
 import com.app.demo.demo.service.UserInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class ShortenController {
         final UserInfoDto.UserInfoResponseDto userInfo = userInfoService.createUserInfo(requestDto);
 
         return responseService.createResponse(
-                new ResponseSingleResult<>(new ShortenController(userInfoService, responseService), userInfo),
+                new SingleResultStrategy<>(new ShortenController(userInfoService, responseService), userInfo),
                 userInfo.getId()
         );
     }
