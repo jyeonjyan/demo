@@ -47,10 +47,11 @@ public class UserInfoController {
         /*
         A userinfo 단위에 self-rel uri mapping
          */
-        final List<UserInfoDto.UserInfoResponseDto> userInfoWithSelfRel = allUserInfo.stream().map(userInfo -> userInfo.add(
-                Link.of(String.valueOf(linkTo(UserInfoController.class)
-                        .slash(userInfo.getId()).toUri()))
-                        .withSelfRel()
+        final List<UserInfoDto.UserInfoResponseDto> userInfoWithSelfRel = allUserInfo.stream()
+                .map(userInfo -> userInfo.add(
+                        Link.of(String.valueOf(linkTo(UserInfoController.class)
+                                .slash(userInfo.getId()).toUri()))
+                                .withSelfRel()
         )).collect(Collectors.toList());
 
 
