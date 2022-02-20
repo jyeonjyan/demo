@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Tag(name = "shorten-controller", description = "draft:: shorten-controller related responseService")
 @RequestMapping("/demo/v0.0.1/shorten")
 @RequiredArgsConstructor
@@ -31,4 +33,14 @@ public class ShortenController {
         );
     }
 
+
+    /*
+    TODO
+     1. uri item:: createResponse(item.getId()) cause 비효율
+     - 단건 까지는 괜찮은데 2번의 불편함을 초래
+     2. stream을 써서 items를 내고 -> responseService를 만드는 부분에서 stream을 또 사용하는 비효율.
+     */
+    private List<String> makeLinks(List<UserInfoDto.UserInfoResponseDto> userInfoResponseDtoList){
+        return null;
+    }
 }

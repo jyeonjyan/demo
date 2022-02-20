@@ -14,7 +14,6 @@ public class ResponseService {
 
         - 종류
         1. singleResult
-        TODO 2. listResult
     */
     public ResponseEntity<Object> createResponse(ResponseStrategy responseStrategy, Object data){
         return responseStrategy.createResponse(data);
