@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -38,5 +38,23 @@ public class UserInfoController {
                 .created(linkTo(UserInfoController.class)
                 .slash(userInfo.getId()).toUri())
                 .body(userInfo);
+    }
+
+    @GetMapping("/userinfo")
+    public ResponseEntity<List<UserInfoDto.UserInfoResponseDto>> findAllUserInfo(){
+        final List<UserInfoDto.UserInfoResponseDto> allUserInfo = userInfoService.getAllUserInfo();
+
+        /*
+        A userinfo 단위에 self-rel uri mapping
+         */
+        final List<UserInfoDto.UserInfoResponseDto> userInfoWithSelfRel = allUserInfo.stream()
+                .map(userInfo -> userInfo.add(
+                        Link.of(String.valueOf(linkTo(UserInfoController.class)
+                                .slash(userInfo.getId()).toUri()))
+                                .withSelfRel()
+        )).collect(Collectors.toList());
+
+
+        return ResponseEntity.ok().body(userInfoWithSelfRel);
     }
 }
