@@ -1,6 +1,5 @@
-package com.app.demo.response;
+package com.app.demo.response.result;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
