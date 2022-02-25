@@ -1,24 +1,13 @@
 package com.app.demo.response.result;
 
 import lombok.Data;
-import lombok.Getter;
 
 @Data
-public class Result<T> {
-    private final T data;
+public class SingleResult<T> {
+    private T data;
 
-    public Result(T data) {
+    public SingleResult(T data) {
         this.data = data;
     }
 
-    @Getter
-    static class ListResult extends Result{
-
-        private final int size;
-
-        public ListResult(Object data, int size) {
-            super(data);
-            this.size = size;
-        }
-    }
 }
