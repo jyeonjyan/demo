@@ -37,9 +37,8 @@ public class UserInfoDocumentationTests {
     @Test
     @DisplayName("uri: /demo/v0.0.1/user/userinfo 테스트하면 정상적으로 반환한다.")
     public void create() throws Exception {
-        /*
-        Given:: requestDto
-         */
+
+        // Given
         UserInfoDto.UserInfoRequestDto requestDto = UserInfoDto.UserInfoRequestDto.builder()
                 .email("jihwan.official@gmail.com")
                 .password("1234")
