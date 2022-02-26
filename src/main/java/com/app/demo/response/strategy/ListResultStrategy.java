@@ -1,7 +1,7 @@
 package com.app.demo.response.strategy;
 
-import com.app.demo.response.result.ListResult;
 import com.app.demo.response.result.Result;
+import com.app.demo.response.result.ListResult;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ListResultStrategy implements ResultStrategy {
     }
 
     @Override
-    public void createResult() {
-        new ListResult<>(new Result<>(this.data), this.data.size());
+    public Result<Object> createResult() {
+        return new ListResult<>(data, data.size());
     }
 }

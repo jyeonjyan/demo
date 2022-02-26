@@ -11,7 +11,7 @@ public class SingleResultStrategy implements ResultStrategy{
     }
 
     @Override
-    public void createResult() {
-        new Result<>(data);
+    public Result<Object> createResult() {
+        return new Result<>(data);
     }
 }
