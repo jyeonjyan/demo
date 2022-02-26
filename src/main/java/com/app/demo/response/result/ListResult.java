@@ -1,16 +1,15 @@
 package com.app.demo.response.result;
 
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
-@Data
-public class ListResult<T> {
-    private final Result<List<T>> result;
+@Getter
+public class ListResult<T> extends Result<T>{
     private final int size;
 
-    public ListResult(Result<List<T>> result, int size) {
-        this.result = result;
+    public ListResult(List<T> result, int size) {
+        super(result);
         this.size = size;
     }
 }
