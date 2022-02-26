@@ -9,10 +9,10 @@ public class ResultService {
     /**
      * 원하는 전략으로 result를 생성해주는 메소드
      *
-     * @param strategy 원하는 Result 생성 전략
+     * @param strategy 원하는 result 생성 전략
      * @return Result - 원하는 전략 알고리즘으로 얻은 결과
      */
-    public void createResult(ResultStrategy strategy){
-        strategy.createResult();
+    public Result<Object> createResult(ResultStrategy strategy){
+        return strategy.createResult();
     }
 }

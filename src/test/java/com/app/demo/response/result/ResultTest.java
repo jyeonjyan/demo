@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
 
@@ -30,15 +29,23 @@ class ResultTest {
         /*
         When
          */
-        final ListResult<UserInfoDto.UserInfoResponseDto> userInfoResponseDtoListResult =
-                new ListResult<>(new Result<>(userInfoResponseDtoList), userInfoResponseDtoList.size());
+        final Result<UserInfoDto.UserInfoResponseDto> userInfoResponseDtoListResult =
+                new ListResult<>(userInfoResponseDtoList, userInfoResponseDtoList.size());
 
 
         /*
         Then
          */
         assertNotNull(userInfoResponseDtoListResult);
-        assertEquals(userInfoResponseDtoListResult.getResult().getData(), userInfoResponseDtoList);
-        assertEquals(userInfoResponseDtoListResult.getSize(), userInfoResponseDtoList.size());
+        assertEquals(userInfoResponseDtoListResult.getData().size(), userInfoResponseDtoList.size());
+    }
+
+    @Test
+    @DisplayName("singleResult를 위한 생성자 파라미터로 null이 들어오면 exception을 발생시킨다.")
+    void nullDataCanNotProcess(){
+        // Given
+        String mockDataNull = null;
+        // When
+        assertThrows(IllegalArgumentException.class, () -> new Result<>(mockDataNull));
     }
 }
