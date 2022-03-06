@@ -15,7 +15,7 @@ public class UserInfoDto {
     @Getter
     @NoArgsConstructor
     public static class UserInfoRequestDto {
-        @Email
+        @Email (message = "match your email format")
         @NotBlank
         private String email;
 

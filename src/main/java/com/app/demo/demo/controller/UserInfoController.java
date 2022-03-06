@@ -8,6 +8,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
 
     @PostMapping("/userinfo")
-    public ResponseEntity<UserInfoDto.UserInfoResponseDto> createUserInfo(@RequestBody UserInfoDto.UserInfoRequestDto requestDto){
+    public ResponseEntity<UserInfoDto.UserInfoResponseDto> createUserInfo(@RequestBody @Valid UserInfoDto.UserInfoRequestDto requestDto){
         final UserInfoDto.UserInfoResponseDto userInfo = userInfoService.createUserInfo(requestDto);
 
         /*
@@ -34,10 +35,7 @@ public class UserInfoController {
                         .withSelfRel()
         );
 
-        return ResponseEntity
-                .created(linkTo(UserInfoController.class)
-                .slash(userInfo.getId()).toUri())
-                .body(userInfo);
+        return ResponseEntity.ok().body(userInfo);
     }
 
     @GetMapping("/userinfo")
