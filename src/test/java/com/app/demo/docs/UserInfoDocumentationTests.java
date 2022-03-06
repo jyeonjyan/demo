@@ -54,7 +54,7 @@ public class UserInfoDocumentationTests {
         );
 
         // Then
-        result.andExpect(status().isCreated())
+        result.andExpect(status().isOk())
                 .andDo(MockMvcRestDocumentationWrapper.document("userinfo-create",
                         getDocumentRequest(),
                         getDocumentResponse(),
