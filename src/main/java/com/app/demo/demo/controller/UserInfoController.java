@@ -2,9 +2,6 @@ package com.app.demo.demo.controller;
 
 import com.app.demo.demo.dto.UserInfoDto;
 import com.app.demo.demo.service.UserInfoService;
-import com.app.demo.response.ResultService;
-import com.app.demo.response.result.Result;
-import com.app.demo.response.strategy.SingleResultStrategy;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.Link;
@@ -24,10 +21,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class UserInfoController {
 
     private final UserInfoService userInfoService;
-    private final ResultService resultService;
 
     @PostMapping("/userinfo")
-    public Result<Object> createUserInfo(@RequestBody @Valid UserInfoDto.UserInfoRequestDto requestDto){
+    public ResponseEntity<UserInfoDto.UserInfoResponseDto> createUserInfo(@RequestBody @Valid UserInfoDto.UserInfoRequestDto requestDto){
         final UserInfoDto.UserInfoResponseDto userInfo = userInfoService.createUserInfo(requestDto);
 
         /*
@@ -39,7 +35,7 @@ public class UserInfoController {
                         .withSelfRel()
         );
 
-        return resultService.createResult(new SingleResultStrategy(userInfo));
+        return ResponseEntity.ok().body(userInfo);
     }
 
     @GetMapping("/userinfo")
